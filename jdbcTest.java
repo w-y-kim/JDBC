@@ -38,7 +38,7 @@ public class jdbcTest {
 	}
 
 	/**
-	 * 조회하고 조회된 결과를 반환하는 메소드2
+	 * 조회하고 조회된 결과를 반환하는 메소드333
 	 * 
 	 * @param id
 	 * 테이블이 만들어져야하고 테이블과 1:1 관계에 있는 VO를 만들어야 한다.
@@ -54,7 +54,7 @@ public class jdbcTest {
 			Statement stmt = con.createStatement();
 			String sql = "select * from member"; // id만
 																					// 동적으로
-
+ 
 			// TODO 6.sql 실행
 			/*
 			 * dml = inset , delete, update 는 executeUpdate() sql 반환값은 int , 예를
