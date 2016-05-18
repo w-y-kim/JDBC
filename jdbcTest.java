@@ -1,3 +1,6 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class jdbcTest {
 
@@ -17,8 +20,12 @@ public class jdbcTest {
 		try {
 			Class.forName(driver);//클래스를 로딩한다. static으로 만들어진 객체가 생성되서 등록뭔소리
 			System.out.println("드라이버 로딩 성공!");
-		} catch (ClassNotFoundException e) {
-			// 컴파일 타입 예외
+			
+			//TODO 2.sql.Connection을 가져와야한다. 
+			Connection con = DriverManager.getConnection(url, user, password);
+			System.out.println("DB연결성공");
+		} catch (ClassNotFoundException | SQLException e) {
+			// 둘 다 컴파일 타입 예외
 			e.printStackTrace();
 		} // 클래스 로더를 통해 클래스변수(?)를 읽어들이는 역할 
 		
