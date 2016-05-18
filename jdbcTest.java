@@ -15,7 +15,7 @@ public class jdbcTest {
 	public jdbcTest(){
 		//TODO 1.JDBC 드라이버 로딩 
 		try {
-			Class.forName(driver);
+			Class.forName(driver);//클래스를 로딩한다. static으로 만들어진 객체가 생성되서 등록뭔소리
 			System.out.println("드라이버 로딩 성공!");
 		} catch (ClassNotFoundException e) {
 			// 컴파일 타입 예외
@@ -24,6 +24,9 @@ public class jdbcTest {
 		
 	} 
 	
+	/**여기서 컴파일에 에러가 나면 오라클 설치나 경로 등에 문제가 있는 것  
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new jdbcTest();
 	}
