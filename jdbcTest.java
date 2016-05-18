@@ -63,9 +63,17 @@ public class jdbcTest {
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			
-			
-			
-			
+			//TODO 7.실행 
+			while(rs.next()){
+//				rs.getString(1);
+//				String id2 = rs.getString(1);//로컬중복
+				String name = rs.getString("name");
+				String password = rs.getString("age");
+				int age = rs.getInt("age");
+				m = new Member(id, name, password, age);
+			}
+//			if(rs.next()){}
+//			int count = rs.getInt(1); 
 			
 			// con.close();//다 쓰면 무조건 항상 절대! close를 해줘야함 , 자원반납안하면 나중에 error가
 			// 발생(예외도 아니고!) ,에러터지면 여기 실행안됨
@@ -91,7 +99,20 @@ public class jdbcTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new jdbcTest();
+		jdbcTest test = new jdbcTest();
+		Member m = test.selectMember("test"); 
+		System.out.println(m);
 	}
 
 }
+
+
+
+/*1. 컨넥션은 한번만
+ * 2. 디비연결 getconnection , 리턴타입은 connection 인터페이스 객체 
+ * statements를 connection으로부터 받아오고 sql 준비해서 
+ * 4. sql실행 
+ * 만든 statement로 메소드 실행하는데 select일 때만 다르다. 나머지는 executeㅕpdate의 리턴타입은 int 
+ * 
+ * */
+ 
