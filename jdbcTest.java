@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class jdbcTest {
 
@@ -41,10 +42,15 @@ public class jdbcTest {
 	public Member selectMember(String id){
 		Member m = null; 
 		Connection con = null;//로컬 초기 
-		//TODO 4.DB연결 
 		try {
+			//TODO 4.DB연결 
 			con = DriverManager.getConnection(url, user, password);//컨넥셕을 가져옴 
-		
+			//TODO 5.statement 객체 생성 
+			Statement stmt = con.createStatement(); 
+			String sql = "select * from member where id = " + " ' " + id + " ' " ; // id만 동적으로  
+			
+			
+			
 //			con.close();//다 쓰면 무조건 항상 절대! close를 해줘야함 , 자원반납안하면 나중에 error가 발생(예외도 아니고!) ,에러터지면 여기 실행안됨
 		} catch (SQLException e) {
 			// TODO 자동 생성된 catch 블록
