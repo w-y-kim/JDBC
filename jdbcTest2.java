@@ -163,7 +163,6 @@ public class jdbcTest2 {
 			con = DriverManager.getConnection(url,user,password);
 			String sql = "delete member where id =?"; //물음표로 남겨둔다 
 			PreparedStatement pstmt = con.prepareStatement(sql); // Statement와 다르게 미리 sql을 작성해서 바로 넣음 
-			
 			pstmt.setString(1, id);
 			
 			int row = pstmt.executeUpdate();
@@ -207,19 +206,25 @@ public class jdbcTest2 {
 	
 	public static void main(String[] args) {
 		jdbcTest2 test = new jdbcTest2();
+		
+		//SELECT 시 (find)
 //		Member m = test.selectMember("2");
 //		System.out.println(m);
-//
+
+		//SELECT 시 (showAll)
 //		ArrayList<Member> alm = test.selectAllMember();
 //		for (Member e : alm) {
 //			System.out.println(e);
 //		}
 
+		//INSERT 시 (등록)
 //		Member m = new Member("abcd","김자바","1234",33); 
 //		test.insertMember(m);
 
+		//DELETE 시 (삭제)
 //		test.deleteMember("1");
 
+		//UPDATE 시 (수정)
 		Member m = new Member("abcd","박자바","1234",33); 
 		test.updateMember(m);
 	}
