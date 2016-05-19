@@ -183,14 +183,14 @@ public class jdbcTest2 {
 		
 		try {
 			con = DriverManager.getConnection(url,user,password);
-			String sql = "Update member set Name=(?), PASSWORD=(?), AGE=(?) WHERE ID=(?)"; //물음표로 남겨둔다 
+			String sql = "Update member set PASSWORD=?, Name=?, AGE=? WHERE ID=?"; //물음표로 남겨둔다 
 			PreparedStatement pstmt = con.prepareStatement(sql); // Statement와 다르게 미리 sql을 작성해서 바로 넣음 
 			
 			//m객체에서 값 불러와 pstmt에 저장 
-			pstmt.setString(1, m.getId());
-			pstmt.setString(2, m.getPassword());
-			pstmt.setString(3, m.getName());
-			pstmt.setInt(4, m.getAge());
+			pstmt.setString(1, m.getPassword());
+			pstmt.setString(2, m.getName());
+			pstmt.setInt(3, m.getAge());
+			pstmt.setString(4, m.getId());
 			
 			int row = pstmt.executeUpdate();//반환값은 int이다 
 			System.out.println(row +"개 레코드 갱신");
