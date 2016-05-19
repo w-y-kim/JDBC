@@ -143,8 +143,57 @@ public class jdbcTest2 {
 			pstmt.setString(3, m.getName());
 			pstmt.setInt(4, m.getAge());
 			
-			int row = pstmt.executeUpdate();
+			int row = pstmt.executeUpdate();//반환값은 int이다 
 			System.out.println(row +"개 레코드 삽입");
+			
+		} catch (SQLException e) {
+		} finally {
+			try {
+				if(con != null) con.close();
+			} catch (Exception e2) {
+			}
+		}
+		
+	}
+	
+	public void deleteMember(String id){
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection(url,user,password);
+			String sql = "delete member where id =?"; //물음표로 남겨둔다 
+			PreparedStatement pstmt = con.prepareStatement(sql); // Statement와 다르게 미리 sql을 작성해서 바로 넣음 
+			
+			pstmt.setString(1, id);
+			
+			int row = pstmt.executeUpdate();
+			System.out.println(row+"개 삭제완료");
+			
+		} catch (SQLException e) {
+		} finally {
+			try {
+				if(con != null) con.close();
+			} catch (Exception e2) {
+			}
+		}
+		
+	}
+	public void updateMember(Member m){
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection(url,user,password);
+			String sql = "Update member set Name=(?), PASSWORD=(?), AGE=(?) WHERE ID=(?)"; //물음표로 남겨둔다 
+			PreparedStatement pstmt = con.prepareStatement(sql); // Statement와 다르게 미리 sql을 작성해서 바로 넣음 
+			
+			//m객체에서 값 불러와 pstmt에 저장 
+			pstmt.setString(1, m.getId());
+			pstmt.setString(2, m.getPassword());
+			pstmt.setString(3, m.getName());
+			pstmt.setInt(4, m.getAge());
+			
+			int row = pstmt.executeUpdate();//반환값은 int이다 
+			System.out.println(row +"개 레코드 갱신");
 			
 		} catch (SQLException e) {
 		} finally {
@@ -166,8 +215,13 @@ public class jdbcTest2 {
 //			System.out.println(e);
 //		}
 
-		Member m = new Member("abcd","김자바","1234",33); 
-		test.insertMember(m);
+//		Member m = new Member("abcd","김자바","1234",33); 
+//		test.insertMember(m);
+
+//		test.deleteMember("1");
+
+		Member m = new Member("abcd","박자바","1234",33); 
+		test.updateMember(m);
 	}
 
 }
